@@ -112,3 +112,19 @@
 - 비압축 데이터를 읽는 경우에도 중간출력을 압축하는게 유리하다.
 
 ## 4.3. 직렬화
+- 직렬화 : 네트워크 전송을 위해 구조화된 객체를 바이트 스트림으로 전환하는 과정
+- 역직렬화 : 바이트 스트림을 일련의 구조화된 객체로 역전환하는 과정이다.
+
+### 4.3.1 Writable 인터페이스
+- Writable
+- WritableComparable
+
+### 4.3.2 Writable 클래스
+- Text
+- BytesWritable
+- NullWritable
+- ObjectWritable, GenericWritable
+- Writable 콜렉션
+
+### 4.3.3 Custom Writable
+
