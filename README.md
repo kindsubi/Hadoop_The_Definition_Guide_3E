@@ -163,3 +163,79 @@
 - 복잡한 문제해결을 위해서는 pig, hive 등의 고수준 언어 사용을 고려하자.
 - ChainMapper, ChainReducer
 - oozie
+
+
+# 6. 맵리듀스 작동방법
+
+## 6.1 맵리듀스 잡 실행 상세분석
+- MR1
+  - 클라이언트
+  - 잡트래커
+  - 태스크드래커
+  - 분산파일시스템
+- YARN
+  - 클라이언트
+  - 얀 리소스 매니저
+  - 얀 노드 매니저
+  - 맵리듀스 애플리케이션 마스터
+  - 분산 파일시스템
+
+## 6.2 실패
+- MR1
+  - 태스크 실패
+  - 태스크트래커 실패
+  - 잡트래커 실패
+- YARN
+  - 태스크실패
+  - 애플리케이션 마스터 실패
+  - 노드 매니저 실패
+  - 리소스 매니저 실패
+
+## 6.3 잡 스케줄링
+- FIFO 스케줄러
+- fair 스케줄러
+- capacity 스케줄러
+
+## 6.4 셔플과 정렬
+- 맵
+- 리듀스
+- 설정 조정
+
+# 6.5 태스크 실행
+- 태스크 실행 환경. MR시 참고할 수 있는 속성값들을 제공한다. 
+- 투기적 실행. 예상했던 것보다 태스크 수행이 더 느린경우 또다른 동일한 예비태스크를 실행. 
+- 출력 커미터. 
+- 태스크 JVM 재사용
+- 비정상 레코드 생략하기. 생략모드를 사용하면 두번 실패한 후에만 켜진다.
+
+# 7. 맵리듀스 타입과 포맷
+
+## 7.1 맵리듀스 타입
+- 맵의 출력과 리듀서의 입력 타입은 동일해야한다.
+- 기본 separator는 tab분자
+
+## 7.2 입력 포맷
+- 입력 스플릿과 레코드
+  - FileInputFormat
+  - 하둡은 많은 수의 작은 파일보다, 적은 수의 큰 파일을 처리할 때 더 좋은 성능을 낸다.
+- 텍스트 입력
+  - TextInputFormat
+  - KeyValueTextInputForamt
+  - NLineInputFormat
+  - XML
+- 바이너리 입력
+  - SequenceFileInputFormat
+  - SequenceFileAsTextInputFormat
+  - SequenceFileAsBinaryInputFormat
+- 다중 입력. MultipleInputs
+
+## 7.3 출력 포맷
+- 텍스트 출력
+  - TextOutputFormat
+- 바이너리 출력
+  - SequenceFileOutputFormat
+  - SequenceFileAsBinaryOutputFormat
+- 다중 출력
+  - MultipleOutputs
+- 느린 출력
+  - empty file 생성 방지. 
